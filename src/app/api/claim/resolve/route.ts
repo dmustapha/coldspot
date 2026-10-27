@@ -5,6 +5,7 @@
 export const runtime = "nodejs";
 import { NextRequest } from "next/server";
 import { resolveClaimShared } from "../_resolve-deps";
+import { validateClaimId, clientError } from "../_validate";
 
 // A transient fault anywhere in the resolve chain — Oracle cold-connect, the Zetaris BFF, or the
 // Nemotron NIM — must NOT 500 a judge's click. These upstreams intermittently return a bodyless 5xx
@@ -45,10 +46,12 @@ export async function POST(req: NextRequest) {
   } catch {
     return Response.json({ error: "request body must be valid JSON" }, { status: 400 });
   }
-  const { claimId, imageDataUrl, reportDataUrl } = body;
-  if (!claimId || typeof claimId !== "string") {
-    return Response.json({ error: "claimId required" }, { status: 400 });
+  const { claimId: rawClaimId, imageDataUrl, reportDataUrl } = body;
+  const check = validateClaimId(rawClaimId);
+  if (!check.ok) {
+    return Response.json({ error: check.error }, { status: 400 });
   }
+  const claimId = check.claimId;
   try {
     // Bounded transient-retry over the whole resolve: a cold upstream (Oracle/Zetaris/Nemotron)
     // 5xx or connect fault is retried with backoff so the judge's first click never 500s (MAJOR-2).
@@ -69,8 +72,7 @@ export async function POST(req: NextRequest) {
     }
     return Response.json({ decision, ledgerId: claimId });
   } catch (e) {
-    const msg = e instanceof Error ? e.message : String(e);
-    const status = msg.startsWith("CLAIM_NOT_FOUND") ? 404 : 500;
-    return Response.json({ error: msg }, { status });
+    const { status, message } = clientError(e, "resolve");
+    return Response.json({ error: message }, { status });
   }
 }

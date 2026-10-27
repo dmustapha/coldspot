@@ -1,1 +1,39 @@
-{"claims":[]}
+{
+  "claims": [
+    {
+      "claim": "Global P&C insurance premium base",
+      "tier": "context",
+      "value": "~$900B",
+      "evidence": "cited external market figure (context only, not a COLDSPOT output)",
+      "verifiedBy": "scripts/verify-claims.ts"
+    },
+    {
+      "claim": "Annual underwriting leakage from fragmented coverage data",
+      "tier": "context",
+      "value": "~$30B",
+      "evidence": "cited external market figure (context only, not a COLDSPOT output)",
+      "verifiedBy": "scripts/verify-claims.ts"
+    },
+    {
+      "claim": "Hero claim CLM-4471 outcome",
+      "tier": "abstain",
+      "value": "ABSTAIN, missing 'whether the loss date falls inside the declared CAT event window'",
+      "evidence": "one governed Zetaris JOIN (1 row) + reconcile completeness gate",
+      "verifiedBy": "scripts/verify-claims.ts"
+    },
+    {
+      "claim": "Sources discovered vs discarded (decoy)",
+      "tier": "provenance",
+      "value": "3 relevant, 1 discarded (legacy_notes)",
+      "evidence": "live source probes over the 4-source catalog",
+      "verifiedBy": "scripts/verify-claims.ts"
+    },
+    {
+      "claim": "Portfolio book (World Model over the Trust Ledger)",
+      "tier": "reserve",
+      "value": "8 claims, 3 reserved, $1,680,000 reserved total, verifiedRate 1.0",
+      "evidence": "/api/portfolio projection over evidence/ledger/ledger.jsonl",
+      "verifiedBy": "scripts/c3-integrity.ts"
+    }
+  ]
+}

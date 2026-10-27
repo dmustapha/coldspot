@@ -91,9 +91,9 @@ async function seedPolicies(conn: Connection): Promise<void> {
 //             abstain. Shows the range: a load-bearing source that never federated at all.
 // Book-filling claims (DESIGN-HANDOFF contract wants >= 8 queue rows). Each reuses an ALREADY-
 // wired policy so the verdict is the SAME real federated gate (no new Zetaris filestore data):
-//   CLM-5120/5126  RESERVE   -> POL-1002 wind (Helene window 2024-09-24..28). Two more claims from
-//                  the SAME CAT event, inside the window -> deterministic reserves at different
-//                  reported amounts (a real "one hurricane, many claims" book).
+//   CLM-5126       RESERVE   -> POL-1002 wind (Helene window 2024-09-24..28). A second claim from
+//                  the SAME CAT event, inside the window -> deterministic reserve at a different
+//                  reported amount (a real "one hurricane, many claims" book).
 //   CLM-3310       RESERVE   -> POL-1003 wind, loss 2022-09-29 (inside Hurricane Ian 09-28..30,
 //                  cession 35%). A second reserve basis / reinsurance structure.
 //   CLM-2207       ABSTAIN   -> POL-1001 fire, loss 2026-09-16 (CAT window OPEN, close pending ->
@@ -105,7 +105,6 @@ const CLAIMS = [
   { claim_id: "CLM-9002", policy_id: "POL-1005", peril: "water", loss_date: "2026-05-01", region: "CA", reported_amount: 400_000 },
   { claim_id: "CLM-4480", policy_id: "POL-1006", peril: "fire", loss_date: "2026-08-02", region: "TX", reported_amount: 300_000 },
   { claim_id: "CLM-4495", policy_id: "POL-1007", peril: "fire", loss_date: "2026-07-20", region: "CA", reported_amount: 900_000 },
-  { claim_id: "CLM-5120", policy_id: "POL-1002", peril: "wind", loss_date: "2024-09-25", region: "FL", reported_amount: 2_100_000 },
   { claim_id: "CLM-5126", policy_id: "POL-1002", peril: "wind", loss_date: "2024-09-27", region: "FL", reported_amount: 640_000 },
   { claim_id: "CLM-3310", policy_id: "POL-1003", peril: "wind", loss_date: "2022-09-29", region: "FL", reported_amount: 1_400_000 },
   { claim_id: "CLM-2207", policy_id: "POL-1001", peril: "fire", loss_date: "2026-09-16", region: "FL", reported_amount: 2_000_000 },

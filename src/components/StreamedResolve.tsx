@@ -7,6 +7,8 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { Decision } from "@/core/types";
+import { REPLAY_MODE } from "@/lib/replay";
+import { ReplaySignpost } from "@/components/ReplaySignpost";
 
 interface StreamStep {
   action: string;
@@ -152,6 +154,10 @@ export function StreamedResolve({
       onBusyChange?.(false);
     }
   }, [phase, claimId, imageDataUrl, reportDataUrl, onDone, onBusyChange, disabled]);
+
+  // Hosted demo is app-only: the live resolve stack is not reachable here, so present the signpost
+  // instead of a control that would fail closed. Local dev (flag unset) keeps the full live stream.
+  if (REPLAY_MODE) return <ReplaySignpost action="Resolve (watch it reason)" />;
 
   return (
     <section className="space-y-4">

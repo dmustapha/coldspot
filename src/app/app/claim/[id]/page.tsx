@@ -14,6 +14,8 @@ import { VisionUpload } from "@/components/VisionUpload";
 import { StreamedResolve } from "@/components/StreamedResolve";
 import { RecomputePanel } from "@/components/RecomputePanel";
 import { EvidenceGraph } from "@/components/EvidenceGraph";
+import { ReplaySignpost } from "@/components/ReplaySignpost";
+import { REPLAY_MODE } from "@/lib/replay";
 import type { Decision } from "@/core/types";
 
 interface Routing {
@@ -139,12 +141,14 @@ export default function ClaimPage({ params }: { params: Promise<{ id: string }> 
           />
           <button
             onClick={resolve}
-            disabled={busy || streamBusy}
+            disabled={busy || streamBusy || REPLAY_MODE}
             className="rounded-chip bg-accent px-5 py-2 text-[13.5px] font-semibold text-[oklch(18%_0.02_75)] transition-colors duration-150 hover:bg-accent-hi active:bg-accent-deep disabled:cursor-not-allowed disabled:bg-surface-3 disabled:text-ink-faint"
           >
             {busy ? "Resolving…" : "Resolve"}
           </button>
         </div>
+
+        {REPLAY_MODE && <ReplaySignpost action="Resolve" />}
 
         {/* Scout routing line (O3: routing is visible) */}
         {routing && (

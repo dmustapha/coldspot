@@ -9,6 +9,7 @@ export const runtime = "nodejs";
 
 import { NextRequest } from "next/server";
 import { resolveClaimShared } from "../../_resolve-deps";
+import { validateClaimId, clientError } from "../../_validate";
 import { loadStoredRun, collectRunSources } from "../../_recompute-deps";
 import { diffDecisions } from "@/core/recompute-diff";
 import type { Decision, LedgerStep } from "@/core/types";
@@ -55,12 +56,14 @@ export async function POST(
   req: NextRequest,
   { params }: { params: Promise<{ id: string }> },
 ) {
-  const { id: claimId } = await params;
+  const { id: rawClaimId } = await params;
   const { imageDataUrl, reportDataUrl } = (await req.json().catch(() => ({}))) as {
     imageDataUrl?: string;
     reportDataUrl?: string;
   };
-  if (!claimId) return Response.json({ error: "claimId required" }, { status: 400 });
+  const check = validateClaimId(rawClaimId);
+  if (!check.ok) return Response.json({ error: check.error }, { status: 400 });
+  const claimId = check.claimId;
 
   // Read the stored decision BEFORE the recompute appends its own run to the append-only ledger.
   const stored = await loadStoredRun(claimId);
@@ -89,7 +92,8 @@ export async function POST(
       recomputedSources: run.sources(),
     });
   } catch (e) {
-    const msg = e instanceof Error ? e.message : String(e);
-    return Response.json({ error: msg }, { status: 502 });
+    // Mask upstream detail (Oracle/Zetaris/Nemotron): log server-side, return a generic message.
+    const { message } = clientError(e, "recompute");
+    return Response.json({ error: message }, { status: 502 });
   }
 }

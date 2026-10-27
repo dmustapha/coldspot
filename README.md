@@ -35,7 +35,7 @@ COLDSPOT is the agent that does that stitching, and knows when it cannot. Given 
 4. **Abstain, naming the cold spot.** For the hero claim, the catastrophe event window is unresolved, so the agent abstains and names it: "whether the loss date falls inside the declared CAT event window," plus the source that resolves it.
 5. **Vision closes the gap.** Nemotron VL reads the uploaded FEMA declaration, extracts the real date window, and supplies the missing fact. The gate flips abstain into **reserve $750,000**, with the reinsurance cession math.
 6. **Explain with lineage.** Every sentence of the decision links to the source fact and the ledger step that produced it. Click a sentence in the evidence graph and its provenance chain lights up.
-7. **See the book.** The portfolio view aggregates the World Model across the estate: 9 claims, $2.73M reserved, and systemic cold-spot clusters (claims stuck on the same missing fact). "Re-derive from live sources" recomputes a decision identically, proving it was earned, not stored.
+7. **See the book.** The portfolio view aggregates the World Model across the estate: 8 claims, $1.68M reserved, and systemic cold-spot clusters (claims stuck on the same missing fact). "Re-derive from live sources" recomputes a decision identically, proving it was earned, not stored.
 
 ## Sponsor technology, made load-bearing
 

@@ -6,6 +6,7 @@
 import Link from "next/link";
 import { ColdspotMark } from "./Sweep";
 import type { Verdict } from "./Sweep";
+import { REPLAY_MODE } from "@/lib/replay";
 
 export function SiteNav({ active }: { active?: "app" | "demo" | "proof" | "portfolio" }) {
   const item = (href: string, key: string, label: string) => (
@@ -28,6 +29,14 @@ export function SiteNav({ active }: { active?: "app" | "demo" | "proof" | "portf
         >
           <ColdspotMark size={20} />
           COLDSPOT
+          {REPLAY_MODE && (
+            <span
+              title="Hosted demo: the earned run is served; live federation runs in full-stack mode."
+              className="ml-1 rounded-chip border border-dashed border-ice-45 bg-ice-10 px-2 py-0.5 font-mono text-[10px] font-semibold uppercase tracking-[0.12em] text-ice"
+            >
+              Replay
+            </span>
+          )}
         </Link>
         <div className="flex items-center gap-1">
           {item("/app", "app", "Console")}

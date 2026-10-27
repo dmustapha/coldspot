@@ -7,6 +7,8 @@
 "use client";
 
 import { useCallback, useRef, useState } from "react";
+import { REPLAY_MODE } from "@/lib/replay";
+import { ReplaySignpost } from "@/components/ReplaySignpost";
 
 interface FieldChange {
   field: string;
@@ -68,6 +70,10 @@ export function RecomputePanel({
       busy.current = false;
     }
   }, [claimId, imageDataUrl, reportDataUrl]);
+
+  // Hosted demo is app-only: re-deriving from live sources needs the federation stack, which is not
+  // reachable here. Present the signpost instead of a control that would fail closed. Local dev keeps it.
+  if (REPLAY_MODE) return <ReplaySignpost action="Re-derive from live sources" />;
 
   return (
     <section className="space-y-4">

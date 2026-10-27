@@ -9,6 +9,7 @@
 export const runtime = "nodejs";
 import { NextRequest } from "next/server";
 import { resolveClaimShared } from "../../_resolve-deps";
+import { validateClaimId, clientError } from "../../_validate";
 import type { LedgerStep } from "@/core/types";
 
 function isTransient(msg: string): boolean {
@@ -40,10 +41,12 @@ export async function POST(req: NextRequest) {
   } catch {
     return Response.json({ error: "request body must be valid JSON" }, { status: 400 });
   }
-  const { claimId, imageDataUrl, reportDataUrl } = body;
-  if (!claimId || typeof claimId !== "string") {
-    return Response.json({ error: "claimId required" }, { status: 400 });
+  const { claimId: rawClaimId, imageDataUrl, reportDataUrl } = body;
+  const check = validateClaimId(rawClaimId);
+  if (!check.ok) {
+    return Response.json({ error: check.error }, { status: 400 });
   }
+  const claimId = check.claimId;
 
   const encoder = new TextEncoder();
   const stream = new ReadableStream<Uint8Array>({
@@ -74,8 +77,10 @@ export async function POST(req: NextRequest) {
         }
         emit({ type: "decision", decision, ledgerId: claimId });
       } catch (e) {
-        const msg = e instanceof Error ? e.message : String(e);
-        emit({ type: "error", error: msg });
+        // Mask the detail: log the real error server-side, stream a generic message to the client
+        // (never a raw ORA- code / oracle.com URL / stack).
+        const { message } = clientError(e, "resolve/stream");
+        emit({ type: "error", error: message });
       } finally {
         controller.close();
       }

@@ -24,7 +24,13 @@ const mono = Spline_Sans_Mono({
   variable: "--font-mono",
 });
 
+// Absolute base for OG / Twitter images. Defaults to the production host so a shared link resolves
+// og:image to the live site, not localhost. Override locally with NEXT_PUBLIC_SITE_URL in .env.local.
+const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://coldspot-agent.duckdns.org";
+
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
   title: "COLDSPOT · coverage discovery agent",
   description:
     "Discovers which scattered systems govern a disputed claim, federates them through one governed Zetaris query, and reasons coverage with Nemotron. When a required fact is missing, it abstains and names it.",
