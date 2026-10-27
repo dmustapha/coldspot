@@ -10,6 +10,7 @@ source, it refuses to read a number back from a cached artifact.
 | Annual underwriting leakage from fragmented coverage data | ~$30B | cited external market figure (context only; not a COLDSPOT output) | `scripts/verify-claims.ts` |
 | Hero claim CLM-4471 outcome | ABSTAIN, missing "whether the loss date falls inside the declared CAT event window" | one governed Zetaris JOIN (1 row) + reconcile completeness gate | `scripts/verify-claims.ts` |
 | Sources discovered vs discarded (decoy) | 3 relevant, 1 discarded (legacy_notes) | live source probes over the 4-source catalog | `scripts/verify-claims.ts` |
+| Portfolio book | 8 claims, $1.68M reserved (3 reserved / 5 abstained), verified rate 1.0 | Meterless World Model aggregation replayed over the committed append-only H-MEM ledger | `scripts/resolve-book.sh` then `curl /api/portfolio` (`.book`) |
 
 Recomputed + PASS (P4.2). Reproduce:
 `set -a && . ./.env.local && set +a && npx tsx scripts/verify-claims.ts` ->
