@@ -23,7 +23,7 @@
 
 A property and casualty claim is disputed across systems that do not talk to each other: the policy lives in one database, the endorsement in a filestore, the reinsurance treaty behind a REST API, the catastrophe declaration at a government agency, and the damage itself only in a photo. A human adjuster spends hours stitching these together before they can set a reserve.
 
-COLDSPOT is the agent that does that stitching, and knows when it cannot. Given a claim, it discovers which scattered systems are relevant, federates them through **one governed Zetaris query** (never centralizing the data), reconciles the coverage facts, and asks a simple question: is every fact present with confidence? If yes, it reserves, with the cession math shown. If one fact is missing, it **abstains**, naming the exact fact and the source that resolves it, rather than inventing a number. That missing fact is the cold spot. When a damage photo or a FEMA declaration is uploaded, **Nemotron vision reads it**, supplies the missing fact, and the deterministic gate flips the abstain into a reserve, every step lineage tracked.
+COLDSPOT is the agent that does that stitching, and knows when it cannot. Given a claim, it discovers which scattered systems are relevant, federates them through **one governed Zetaris query** (one query, no in-app join), reconciles the coverage facts, and asks a simple question: is every fact present with confidence? If yes, it reserves, with the cession math shown. If one fact is missing, it **abstains**, naming the exact fact and the source that resolves it, rather than inventing a number. That missing fact is the cold spot. When a damage photo or a FEMA declaration is uploaded, **Nemotron vision reads it**, supplies the missing fact, and the deterministic gate flips the abstain into a reserve, every step lineage tracked.
 
 > The engine is the source of truth, not the model. A deterministic completeness gate decides the verdict; the model gathers and explains but can never override it.
 
@@ -41,7 +41,7 @@ COLDSPOT is the agent that does that stitching, and knows when it cannot. Given 
 
 | Sponsor | How it is used (not a checkbox) | Proof |
 |---------|--------------------------------|-------|
-| **Zetaris** | One governed federated query joins policy (Oracle) + endorsement (filestore) + treaty (REST) without centralizing the data. In-app join is structurally impossible. | `src/adapters/zetaris/`, `npm run evals` (C3 discovery), live `/app` |
+| **Zetaris** | One governed federated query joins policy + endorsement (filestore) + treaty (REST). The in-app client exposes only `runFederatedQuery`, so an in-app join is structurally impossible. The policy source is a Zetaris filestore populated from Oracle (an extraction for this build, not a live link to that one system). | `src/adapters/zetaris/`, `npm run evals` (C3 discovery), live `/app` |
 | **NVIDIA Nemotron** | Two-turn reasoning (plan then decide) plus the hero: Nemotron VL reads the uploaded FEMA declaration and supplies the fact that flips abstain into reserve. | `src/adapters/nemotron/`, `/demo` replay |
 | **Meterless** | The real vendored engines run the product: H-MEM is the earned Trust Ledger, the World Model projects the portfolio, Scout routes intent and blocks jailbreaks. Our impl passes the Meterless conformance suite. | `npm run conformance` (H-MEM 13/13, Scout PASS), `vendor/meterless/` |
 

@@ -1,22 +1,16 @@
 # Submission status
-_Last updated: forge (planning). Build keeps this current as features land._
 
-## Status
-- [ ] Zetaris dual access resolved (cloud creds OR local Docker), day-1 build
-- [ ] 3-type federation registered; ONE governed query returns rows
-- [ ] Source probes produce real discard reasons (decoy discarded)
-- [ ] Nemotron 5-stage loop decides reserve OR abstains with named fact
-- [ ] Scout Intent class authored + eval-harness green
-- [ ] H-MEM Trust Ledger append-only + Oracle-mirrored + replay UI
-- [ ] Nemotron-VL vision beat (separate call) feeds the decision
-- [ ] Oracle ADB provisioned; seed estate loaded; hero claim pre-run
-- [ ] Landing `/` + `/app` + `/app/claim/[id]` + `/demo` + `/proof` routes
-- [ ] Durable OCI deploy survives through Nov 6
-- [ ] `submission/proof.md` captured (federated SQL transcript, Nemotron trace, ledger JSONL, Scout eval)
-- [ ] ≤3-min demo video + README rubric map + per-sponsor usage
+COLDSPOT is built, deployed, and submission ready.
 
-## Known limitations / blockers
-- Zetaris live access unresolved until Day-1 probe (dual path mitigates). Reason: blocked-on external creds.
-- Scout Intent requires authoring (package spec-only). Reason: upstream, no runnable src.
-- Nemotron tools+vision-in-one-call unverified. Reason: time/safety, separated per ADR-008.
-- CAT-stream 4th source, live NOAA, fraud forensics, actuarial accuracy, auth/multi-tenant deliberately out. Reason: scope (see LIMITATIONS.md).
+## Done
+- Zetaris federation: ONE governed query joins policy + endorsement + treaty (no in-app join).
+- Reasoning: NVIDIA Nemotron two-turn plan then decide, plus the vision read that closes the coverage gap.
+- Meterless engines (vendored, real): H-MEM Trust Ledger, World Model, Scout. Conformance H-MEM 13/13, Scout PASS.
+- Deterministic engine-as-truth gate; fail-closed under source outage.
+- 9-claim earned book, portfolio with systemic cold-spot clusters, interactive evidence graph, recompute-from-live.
+- Tests 53/53, evals SUITE PASS, CI green.
+- Live app: https://coldspot-agent.duckdns.org . Public repo: https://github.com/dmustapha/coldspot .
+
+## Scope
+- Carrier policy data is representative-seeded (see CLAIMS.md). Federation, reasoning, vision, OpenFEMA, and Meterless are real.
+- The deployed URL runs app-only (the Zetaris stack runs alongside the app in full-stack mode); the recorded demo shows the full live money beat.

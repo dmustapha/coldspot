@@ -16,3 +16,8 @@ Recomputed + PASS (P4.2). Reproduce:
 `VERIFY_CLAIMS: PASS` (requires the Zetaris stack up + treaty API on :3100).
 The decoy discard reason is signal-derived at runtime, e.g.
 `"stale (last refreshed 2019-03-01, 2792d > 365d); 0 rows match policy POL-1001"`.
+
+## Honest scope (what is representative vs live)
+- Carrier **policy/claim/treaty records are representative-seeded** (real carrier policy-admin and claims systems are not publicly accessible). The seed stands in for those systems.
+- The **policy federation source is a Zetaris filestore populated from Oracle** (`FILES.policy`), an extraction for this build, not a live link to that one system. The governed JOIN across policy + endorsement + treaty is real and runs in Zetaris; there is no in-app join.
+- **Real and live:** the Zetaris federated query, Nemotron reasoning and the vision read, OpenFEMA catastrophe windows, and the Meterless engines (conformance H-MEM 13/13, Scout PASS).
