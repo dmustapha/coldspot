@@ -1,0 +1,39 @@
+{
+  "harness": "hero-prerun",
+  "appUrl": "http://localhost:3100",
+  "claimId": "CLM-4471",
+  "ts": "2026-10-25T12:11:36.862Z",
+  "elapsedMs": 12849,
+  "decisionVerdict": "abstain",
+  "missing_fact": "whether the loss date falls inside the declared CAT event window",
+  "resolving_source": "treaty CAT-event registry (SRC.treaty cat_event_close) / NOAA event close date",
+  "ledgerEntryCount": 12,
+  "actionSequence": [
+    "probe",
+    "probe",
+    "probe",
+    "probe",
+    "discard",
+    "discard",
+    "federate",
+    "federate",
+    "reconcile",
+    "verify",
+    "counterfactual",
+    "abstain"
+  ],
+  "discardedCount": 2,
+  "checks": {
+    "verdictOk": true,
+    "namesCatFact": true,
+    "hasResolvingSource": true,
+    "ranLoop": true,
+    "earned": true
+  },
+  "verdict": "PASS",
+  "artifacts": {
+    "decision": "submission/hero-run/decision.json",
+    "ledger": "submission/hero-run/ledger.jsonl",
+    "summary": "submission/hero-run/summary.json"
+  }
+}

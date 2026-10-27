@@ -1,0 +1,19 @@
+{
+  "intents": [
+    {
+      "intent": "reserve-decide",
+      "workflow": "reserve-decide",
+      "keywords": ["reserve", "how much", "set aside", "pay out", "liability"]
+    },
+    {
+      "intent": "coverage-check",
+      "workflow": "coverage-check",
+      "keywords": ["covered", "coverage", "does the policy", "exclusion", "is this", "check coverage"]
+    },
+    {
+      "intent": "abstain-triage",
+      "workflow": "abstain-triage",
+      "keywords": ["unclear", "dispute", "conflicting", "missing", "ambiguous"]
+    }
+  ]
+}

@@ -1,0 +1,286 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================================================
+   COLDSPOT identity core - "thermogram of a claim"
+   Cold slate ground; ONE chrome accent (investigation amber, the lamp);
+   ice is DATA-ONLY (the missing fact); jade=approve garnet=deny (data-only).
+   Elevation: bg-step + 1px hairline; the only glow is lamp/evidence heat.
+   ========================================================================== */
+
+:root {
+  /* base roles (6) */
+  --void: oklch(16% 0.012 235);
+  --surface-1: oklch(19.5% 0.014 235);
+  --surface-2: oklch(22.5% 0.016 235);
+  --surface-3: oklch(26% 0.018 235);
+  --ink: oklch(94% 0.008 220);
+  --accent: oklch(78% 0.145 75);
+
+  /* role extensions */
+  --ink-dim: oklch(72% 0.01 225);
+  --ink-faint: oklch(56% 0.012 230);
+  --accent-hi: oklch(87% 0.12 80);
+  --accent-deep: oklch(55% 0.12 65);
+
+  /* data-only semantics (never chrome) */
+  --ice: oklch(87% 0.055 215);
+  --ice-deep: oklch(64% 0.07 220);
+  --jade: oklch(74% 0.13 165);
+  --garnet: oklch(64% 0.19 20);
+
+  /* alpha-over-role ladder (color-mix in oklab) */
+  --ink-04: color-mix(in oklab, var(--ink) 4%, transparent);
+  --ink-06: color-mix(in oklab, var(--ink) 6%, transparent);
+  --ink-08: color-mix(in oklab, var(--ink) 8%, transparent);
+  --ink-12: color-mix(in oklab, var(--ink) 12%, transparent);
+  --ink-18: color-mix(in oklab, var(--ink) 18%, transparent);
+  --ink-30: color-mix(in oklab, var(--ink) 30%, transparent);
+  --ink-45: color-mix(in oklab, var(--ink) 45%, transparent);
+  --ink-70: color-mix(in oklab, var(--ink) 70%, transparent);
+  --accent-08: color-mix(in oklab, var(--accent) 8%, transparent);
+  --accent-12: color-mix(in oklab, var(--accent) 12%, transparent);
+  --accent-18: color-mix(in oklab, var(--accent) 18%, transparent);
+  --accent-30: color-mix(in oklab, var(--accent) 30%, transparent);
+  --accent-50: color-mix(in oklab, var(--accent) 50%, transparent);
+  --ice-10: color-mix(in oklab, var(--ice) 10%, transparent);
+  --ice-16: color-mix(in oklab, var(--ice) 16%, transparent);
+  --ice-28: color-mix(in oklab, var(--ice) 28%, transparent);
+  --ice-45: color-mix(in oklab, var(--ice) 45%, transparent);
+  --jade-12: color-mix(in oklab, var(--jade) 12%, transparent);
+  --jade-25: color-mix(in oklab, var(--jade) 25%, transparent);
+  --garnet-12: color-mix(in oklab, var(--garnet) 12%, transparent);
+  --garnet-25: color-mix(in oklab, var(--garnet) 25%, transparent);
+
+  /* semantic layer */
+  --border: var(--ink-08);
+  --border-strong: var(--ink-18);
+  --hover-fill: var(--ink-06);
+  --focus-ring: var(--accent-hi);
+
+  /* the ONLY real shadow lives on overlays */
+  --shadow-overlay: 0 24px 64px -16px rgba(2, 6, 14, 0.65);
+  /* colored glows (lamp heat), never neutral drops */
+  --glow-lamp: 0 0 120px -20px var(--accent-30);
+  --glow-cell: 0 0 14px 2px var(--accent-30);
+
+  /* motion */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out-quart: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-back: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --t-fast: 150ms;
+  --t-med: 400ms;
+  --t-reveal: 800ms;
+}
+
+/* contain the intentional off-edge bleeds (case-stamp watermarks at -right-6,
+   the dense status strip) so a 375px viewport has no horizontal scroll; nothing
+   usable lives past the fold edge. `clip` on html does not create a scroll
+   container, so the sticky nav keeps working. */
+html {
+  overflow-x: clip;
+}
+
+body {
+  color: var(--ink);
+  background: var(--void);
+  font-family: var(--font-body), system-ui, sans-serif;
+  font-size: 15px;
+  line-height: 1.6;
+  overflow-x: clip;
+}
+
+::selection {
+  background: var(--accent-30);
+  color: var(--ink);
+}
+
+:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 2px;
+}
+
+@layer components {
+  /* the three voices */
+  .display {
+    font-family: var(--font-display), system-ui, sans-serif;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.0;
+  }
+  .eyebrow {
+    font-family: var(--font-mono), monospace;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+  .eyebrow-ice {
+    font-family: var(--font-mono), monospace;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--ice);
+  }
+  /* display-face numerals: lining+tabular, units at 0.54em inheriting weight */
+  .numeral {
+    font-family: var(--font-display), system-ui, sans-serif;
+    font-weight: 800;
+    font-variant-numeric: lining-nums tabular-nums;
+    letter-spacing: -0.04em;
+    line-height: 0.92;
+  }
+  .numeral .unit {
+    font-size: 0.54em;
+    font-weight: inherit;
+    letter-spacing: -0.01em;
+  }
+  .mono-data {
+    font-family: var(--font-mono), monospace;
+    font-variant-numeric: lining-nums tabular-nums;
+  }
+  .hairline {
+    border: 1px solid var(--border);
+  }
+  .hairline-strong {
+    border: 1px solid var(--border-strong);
+  }
+  /* card fill: one cold step up + hairline (elevation doctrine) */
+  .card {
+    background: linear-gradient(180deg, var(--surface-2), var(--surface-1));
+    border: 1px solid var(--border);
+    border-radius: 12px;
+  }
+  .card-flat {
+    background: var(--surface-1);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+  }
+  /* survey ruling: the landing ground texture (masked, never uniform tiling) */
+  .survey-ruling {
+    background-image: linear-gradient(color-mix(in oklab, var(--ink) 5.5%, transparent) 1px, transparent 1px),
+      linear-gradient(90deg, color-mix(in oklab, var(--ink) 5.5%, transparent) 1px, transparent 1px);
+    background-size: 56px 56px;
+    -webkit-mask-image: radial-gradient(120% 90% at 50% 10%, black 30%, transparent 85%);
+    mask-image: radial-gradient(120% 90% at 50% 10%, black 30%, transparent 85%);
+  }
+  /* ghost case-file stamp (section watermark, document-native) */
+  .case-stamp {
+    font-family: var(--font-display), system-ui, sans-serif;
+    font-weight: 800;
+    color: transparent;
+    -webkit-text-stroke: 1px var(--ink-08);
+    letter-spacing: -0.02em;
+    user-select: none;
+  }
+}
+
+/* ===== motion system (two-sided reduced-motion at the bottom) ============= */
+
+/* lamp radial breathing (the landing's one living atmosphere layer) */
+@keyframes lamp-breathe {
+  0%, 100% { opacity: 0.55; transform: translate(-50%, -40%) scale(1); }
+  50% { opacity: 0.8; transform: translate(-50%, -40%) scale(1.05); }
+}
+
+/* evidence cell heat pulse */
+@keyframes cell-smoulder {
+  0%, 100% { opacity: 0.82; }
+  50% { opacity: 1; }
+}
+
+/* frost ring on the cold spot */
+@keyframes frost-pulse {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+
+/* the sweep beam traverse */
+@keyframes beam-sweep {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(var(--beam-travel, 100%)); }
+}
+
+/* the decision gate latching shut (38% open -> sealed at the center seam) */
+@keyframes latch-close {
+  from { width: 38%; }
+  to { width: 49.25%; }
+}
+
+/* the bolt sealing the seam (latched verdicts) */
+@keyframes bolt-seal {
+  0% { left: -6px; opacity: 0.4; }
+  100% { left: calc(50% - 6px); opacity: 1; }
+}
+
+/* the bolt JAMMING at the lip of the cold gap (abstain): travels, hits, recoils */
+@keyframes bolt-jam {
+  0% { left: -6px; opacity: 0.4; }
+  70% { left: calc(38% - 8px); opacity: 1; }
+  80% { left: calc(38% - 20px); }
+  90% { left: calc(38% - 12px); }
+  100% { left: calc(38% - 14px); opacity: 1; }
+}
+
+/* the closer's full-bleed sweep: the beam crosses the field, SNAGS on the cold
+   cell (recoil, retry), then completes: the metaphor as choreography */
+@keyframes closer-beam {
+  0% { left: -4%; opacity: 0; }
+  6% { opacity: 1; }
+  34% { left: 59%; }
+  40% { left: 56.5%; }
+  48% { left: 60%; }
+  54% { left: 57.5%; }
+  62% { left: 60.5%; }
+  88% { left: 101%; opacity: 1; }
+  94% { opacity: 0; }
+  100% { left: 101%; opacity: 0; }
+}
+
+/* reveal: rise + deblur (never-blank: starts at 0.35 opacity) */
+@keyframes rise-in {
+  0% { opacity: 0.35; transform: translateY(14px); filter: blur(4px); }
+  100% { opacity: 1; transform: translateY(0); filter: blur(0); }
+}
+
+/* staggered row arrival */
+@keyframes row-in {
+  0% { opacity: 0.35; transform: translateY(8px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* value arrival: final value rendered synchronously, arrival is a deblur */
+@keyframes value-arrive {
+  0% { opacity: 0.4; filter: blur(5px); }
+  100% { opacity: 1; filter: blur(0); }
+}
+
+/* scoped flash on live re-render (one cell, never a seizure grid) */
+@keyframes scope-flash {
+  0% { background-color: var(--accent-18); }
+  100% { background-color: transparent; }
+}
+
+/* C1 streamed-step reveal (kept; restyled timing) */
+@keyframes fadeIn {
+  from { opacity: 0.35; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .rise-in { animation: rise-in var(--t-reveal) var(--ease-out-quart) both; }
+  .row-in { animation: row-in 520ms var(--ease-out-quart) both; }
+  .value-arrive { animation: value-arrive 700ms var(--ease-out-quart) both; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .rise-in, .row-in, .value-arrive { opacity: 1; transform: none; filter: none; }
+}

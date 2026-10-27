@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="256" height="256" role="img" aria-label="COLDSPOT">
+  <title>COLDSPOT</title>
+  <desc>A warm thermal field of coverage facts with one cold spot the lamp cannot warm.</desc>
+  <defs>
+    <radialGradient id="cs-field" cx="0.44" cy="0.46" r="0.6">
+      <stop offset="0" stop-color="#f6cd82"/>
+      <stop offset="0.5" stop-color="#e6a23c"/>
+      <stop offset="0.85" stop-color="#a06e32"/>
+      <stop offset="1" stop-color="#a06e32" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="cs-soft" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="2.4"/>
+    </filter>
+    <radialGradient id="cs-halo" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#aed6e9" stop-opacity="0.6"/>
+      <stop offset="1" stop-color="#aed6e9" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="cs-core" cx="0.42" cy="0.38" r="0.6">
+      <stop offset="0" stop-color="#eaf6fb"/>
+      <stop offset="0.6" stop-color="#aed6e9"/>
+      <stop offset="1" stop-color="#6fa2be"/>
+    </radialGradient>
+  </defs>
+  <!-- the warm thermal field of facts -->
+  <circle cx="30" cy="31" r="26" fill="url(#cs-field)" filter="url(#cs-soft)"/>
+  <!-- the one cold spot the lamp cannot warm -->
+  <circle cx="40.5" cy="25.5" r="13" fill="url(#cs-halo)"/>
+  <circle cx="40.5" cy="25.5" r="7" fill="#0c0f13" opacity="0.5"/>
+  <circle cx="40.5" cy="25.5" r="6" fill="url(#cs-core)"/>
+  <circle cx="40.5" cy="25.5" r="6" fill="none" stroke="#eaf6fb" stroke-width="0.7" opacity="0.8"/>
+</svg>

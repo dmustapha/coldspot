@@ -1,0 +1,23 @@
+<svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="f" cx="0.44" cy="0.46" r="0.62">
+      <stop offset="0" stop-color="#f6cd82"/>
+      <stop offset="0.5" stop-color="#e6a23c"/>
+      <stop offset="0.85" stop-color="#a06e32"/>
+      <stop offset="1" stop-color="#a06e32" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="s" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="1.4"/></filter>
+    <radialGradient id="c" cx="0.42" cy="0.38" r="0.6">
+      <stop offset="0" stop-color="#eaf6fb"/>
+      <stop offset="0.6" stop-color="#aed6e9"/>
+      <stop offset="1" stop-color="#6fa2be"/>
+    </radialGradient>
+  </defs>
+  <rect width="48" height="48" rx="11" fill="#0c0f13"/>
+  <!-- warm thermal field -->
+  <circle cx="22" cy="24" r="17" fill="url(#f)" filter="url(#s)"/>
+  <!-- the one cold spot (bolder at favicon scale for legibility) -->
+  <circle cx="31" cy="19" r="5.2" fill="#0c0f13"/>
+  <circle cx="31" cy="19" r="4.4" fill="url(#c)"/>
+  <circle cx="31" cy="19" r="4.4" fill="none" stroke="#eaf6fb" stroke-width="0.6" stroke-opacity="0.8"/>
+</svg>

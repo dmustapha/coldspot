@@ -1,0 +1,60 @@
+{
+  "description": "Labeled routing cases for the Scout Intent eval harness (P2.3). Each case is a representative natural-language intake prompt and the workflow the Scout MUST route it to. The harness runs the REAL, VENDORED Meterless Scout engine (vendor/meterless/scout-intent/impl, via src/adapters/meterless/scout.ts) over each case (no mocked routing) and scores exact-workflow accuracy + band behavior. INVARIANT: routing is real, deterministic example+description scoring over data/scout-registry.json — never hardcoded to the expected answer. expectBand is the deterministic band the REAL engine's scoring curve produces (HIGH>=0.8 / MED>=0.55 / LOW>=0.4 / NONE below) — recalibrated when the product swapped onto the real engine; mutate a prompt and both workflow and band change, so the harness is falsifiable.",
+  "cases": [
+    {
+      "id": "RD-1",
+      "prompt": "how much should we reserve on this claim",
+      "expectWorkflow": "reserve-decide",
+      "expectBand": "HIGH"
+    },
+    {
+      "id": "RD-2",
+      "prompt": "what liability do we set aside for CLM-4471",
+      "expectWorkflow": "reserve-decide",
+      "expectBand": "MED",
+      "expectClaimId": "CLM-4471"
+    },
+    {
+      "id": "RD-3",
+      "prompt": "how much do we pay out on the fire loss",
+      "expectWorkflow": "reserve-decide",
+      "expectBand": "HIGH"
+    },
+    {
+      "id": "CC-1",
+      "prompt": "is this damage covered under the policy",
+      "expectWorkflow": "coverage-check",
+      "expectBand": "HIGH"
+    },
+    {
+      "id": "CC-2",
+      "prompt": "does the policy exclusion apply to this peril",
+      "expectWorkflow": "coverage-check",
+      "expectBand": "HIGH"
+    },
+    {
+      "id": "CC-3",
+      "prompt": "check coverage for the water claim",
+      "expectWorkflow": "coverage-check",
+      "expectBand": "HIGH"
+    },
+    {
+      "id": "AT-1",
+      "prompt": "the sources conflict on timing and the record is ambiguous",
+      "expectWorkflow": "abstain-triage",
+      "expectBand": "HIGH"
+    },
+    {
+      "id": "AT-2",
+      "prompt": "the CAT window close date is missing so this is unclear",
+      "expectWorkflow": "abstain-triage",
+      "expectBand": "HIGH"
+    },
+    {
+      "id": "AT-3",
+      "prompt": "there is a dispute over conflicting treaty facts",
+      "expectWorkflow": "abstain-triage",
+      "expectBand": "HIGH"
+    }
+  ]
+}

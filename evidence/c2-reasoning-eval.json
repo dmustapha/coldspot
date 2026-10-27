@@ -1,0 +1,46 @@
+{
+  "harness": "c2-reasoning",
+  "verifyAgreement": [
+    {
+      "claim": "CLM-4471",
+      "agrees": true,
+      "gateComplete": false,
+      "reDerived": false
+    },
+    {
+      "claim": "CLM-7781",
+      "agrees": true,
+      "gateComplete": true,
+      "reDerived": true
+    },
+    {
+      "claim": "CLM-9002",
+      "agrees": true,
+      "gateComplete": false,
+      "reDerived": false
+    }
+  ],
+  "verifyAllAgree": true,
+  "counterfactual": [
+    {
+      "claim": "CLM-4471",
+      "ledgerAmount": 750000,
+      "recomputed": 750000,
+      "matches": true
+    },
+    {
+      "claim": "CLM-9002",
+      "ledgerAmount": 0,
+      "recomputed": 0,
+      "matches": true
+    }
+  ],
+  "counterfactualAllMatch": true,
+  "markovianBound": {
+    "oneSourceBytes": 151,
+    "multiSourceBytes": 154,
+    "constant": true
+  },
+  "verdict": "PASS",
+  "ts": "2026-10-25T06:54:04.475Z"
+}

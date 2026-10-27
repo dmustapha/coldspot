@@ -1,0 +1,37 @@
+{
+  "verdict": "PASS",
+  "typesProbed": 5,
+  "catalogTypes": 5,
+  "sourcesProbed": [
+    "oracle_policy",
+    "endorsement_rows",
+    "treaty_api",
+    "openfema",
+    "damage_photo",
+    "legacy_notes"
+  ],
+  "decoyDiscarded": true,
+  "decoyReasonSignalDerived": true,
+  "decoyReason": "stale (last refreshed 2019-03-01, 2795d > 365d); 0 rows match policy POL-1001",
+  "federatedNames": [
+    "FILES.policy",
+    "FILES.endorsement",
+    "SRC.treaty"
+  ],
+  "confirmedNames": [
+    "FILES.policy",
+    "FILES.endorsement",
+    "SRC.treaty",
+    "openfema.declarations"
+  ],
+  "onlyConfirmedFederated": true,
+  "falsifiable": true,
+  "checks": {
+    "breadth_ge_5_types": true,
+    "decoy_discarded": true,
+    "decoy_reason_signal_derived": true,
+    "only_confirmed_federated": true,
+    "falsifiable": true
+  },
+  "ts": "2026-10-25T06:54:21.419Z"
+}

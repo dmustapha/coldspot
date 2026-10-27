@@ -1,0 +1,24 @@
+{
+  "harness": "c1-causality",
+  "expectedReserve": 750000,
+  "without": {
+    "verdict": "abstain",
+    "missing_fact": "whether the loss date falls inside the declared CAT event window",
+    "namesCatFact": true,
+    "pass": true
+  },
+  "withReport": {
+    "verdict": "reserve",
+    "amount": 750000,
+    "amountMatches": true,
+    "pass": true
+  },
+  "streamIntegrity": {
+    "ok": true,
+    "matched": 12,
+    "detail": "all streamed steps reconstruct the persisted ledger tail (action+actor+details identical, in order)"
+  },
+  "causalityProven": true,
+  "verdict": "PASS",
+  "ts": "2026-10-25T06:53:21.686Z"
+}

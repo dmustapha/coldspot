@@ -1,0 +1,129 @@
+{
+  "harness": "scout-eval",
+  "scoutImpl": "./src/adapters/meterless/scout.ts",
+  "ts": "2026-10-25T06:47:35.623Z",
+  "total": 9,
+  "passed": 9,
+  "accuracy": 1,
+  "bandMatches": 9,
+  "falsifiable": true,
+  "byWorkflow": [
+    {
+      "workflow": "reserve-decide",
+      "cases": 3,
+      "routed": 3
+    },
+    {
+      "workflow": "coverage-check",
+      "cases": 3,
+      "routed": 3
+    },
+    {
+      "workflow": "abstain-triage",
+      "cases": 3,
+      "routed": 3
+    }
+  ],
+  "verdict": "PASS",
+  "results": [
+    {
+      "id": "RD-1",
+      "prompt": "how much should we reserve on this claim",
+      "expectWorkflow": "reserve-decide",
+      "gotWorkflow": "reserve-decide",
+      "score": 0.86,
+      "band": "HIGH",
+      "expectBand": "HIGH",
+      "claimIdOk": true,
+      "pass": true
+    },
+    {
+      "id": "RD-2",
+      "prompt": "what liability do we set aside for CLM-4471",
+      "expectWorkflow": "reserve-decide",
+      "gotWorkflow": "reserve-decide",
+      "score": 0.66,
+      "band": "MED",
+      "expectBand": "MED",
+      "claimIdOk": true,
+      "pass": true
+    },
+    {
+      "id": "RD-3",
+      "prompt": "how much do we pay out on the fire loss",
+      "expectWorkflow": "reserve-decide",
+      "gotWorkflow": "reserve-decide",
+      "score": 0.88,
+      "band": "HIGH",
+      "expectBand": "HIGH",
+      "claimIdOk": true,
+      "pass": true
+    },
+    {
+      "id": "CC-1",
+      "prompt": "is this damage covered under the policy",
+      "expectWorkflow": "coverage-check",
+      "gotWorkflow": "coverage-check",
+      "score": 0.855,
+      "band": "HIGH",
+      "expectBand": "HIGH",
+      "claimIdOk": true,
+      "pass": true
+    },
+    {
+      "id": "CC-2",
+      "prompt": "does the policy exclusion apply to this peril",
+      "expectWorkflow": "coverage-check",
+      "gotWorkflow": "coverage-check",
+      "score": 0.855,
+      "band": "HIGH",
+      "expectBand": "HIGH",
+      "claimIdOk": true,
+      "pass": true
+    },
+    {
+      "id": "CC-3",
+      "prompt": "check coverage for the water claim",
+      "expectWorkflow": "coverage-check",
+      "gotWorkflow": "coverage-check",
+      "score": 0.818,
+      "band": "HIGH",
+      "expectBand": "HIGH",
+      "claimIdOk": true,
+      "pass": true
+    },
+    {
+      "id": "AT-1",
+      "prompt": "the sources conflict on timing and the record is ambiguous",
+      "expectWorkflow": "abstain-triage",
+      "gotWorkflow": "abstain-triage",
+      "score": 0.873,
+      "band": "HIGH",
+      "expectBand": "HIGH",
+      "claimIdOk": true,
+      "pass": true
+    },
+    {
+      "id": "AT-2",
+      "prompt": "the CAT window close date is missing so this is unclear",
+      "expectWorkflow": "abstain-triage",
+      "gotWorkflow": "abstain-triage",
+      "score": 0.818,
+      "band": "HIGH",
+      "expectBand": "HIGH",
+      "claimIdOk": true,
+      "pass": true
+    },
+    {
+      "id": "AT-3",
+      "prompt": "there is a dispute over conflicting treaty facts",
+      "expectWorkflow": "abstain-triage",
+      "gotWorkflow": "abstain-triage",
+      "score": 0.8,
+      "band": "HIGH",
+      "expectBand": "HIGH",
+      "claimIdOk": true,
+      "pass": true
+    }
+  ]
+}

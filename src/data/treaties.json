@@ -1,0 +1,46 @@
+[
+  {
+    "policy_id": "POL-1001",
+    "treaty_id": "TRTY-CAT-FL-2026",
+    "peril": "fire",
+    "cession_pct": 40,
+    "cat_sublimit": 2000000,
+    "cat_event_open": "2026-09-10",
+    "cat_event_close": null,
+    "cat_event_name": "FL Panhandle wind event (NOAA registry open — close date not yet declared)",
+    "noaa_source": "NOAA NHC Atlantic season registry; close date pending"
+  },
+  {
+    "policy_id": "POL-1002",
+    "treaty_id": "TRTY-CAT-FL-2024",
+    "peril": "wind",
+    "cession_pct": 50,
+    "cat_sublimit": 3000000,
+    "cat_event_open": "2024-09-24",
+    "cat_event_close": "2024-09-28",
+    "cat_event_name": "Hurricane Helene",
+    "noaa_source": "NOAA NHC AL092024 (Hurricane Helene), FL landfall 2024-09-26"
+  },
+  {
+    "policy_id": "POL-1003",
+    "treaty_id": "TRTY-CAT-FL-2022",
+    "peril": "wind",
+    "cession_pct": 35,
+    "cat_sublimit": 2500000,
+    "cat_event_open": "2022-09-28",
+    "cat_event_close": "2022-09-30",
+    "cat_event_name": "Hurricane Ian",
+    "noaa_source": "NOAA NHC AL092022 (Hurricane Ian), FL landfall 2022-09-28"
+  },
+  {
+    "policy_id": "POL-1004",
+    "treaty_id": "TRTY-CAT-LA-2021",
+    "peril": "wind",
+    "cession_pct": 45,
+    "cat_sublimit": 4000000,
+    "cat_event_open": "2021-08-29",
+    "cat_event_close": "2021-09-01",
+    "cat_event_name": "Hurricane Ida",
+    "noaa_source": "NOAA NHC AL092021 (Hurricane Ida), LA landfall 2021-08-29"
+  }
+]

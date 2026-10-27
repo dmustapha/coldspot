@@ -1,0 +1,48 @@
+{
+  "name": "COLDSPOT",
+  "tagline": "A carrier-side reserving agent that finds the one coverage fact the lamp cannot warm.",
+  "colorMode": "dark-only",
+  "brandColor": "oklch(78% 0.145 75)",
+  "accent": "oklch(78% 0.145 75)",
+  "ink": [
+    "oklch(16% 0.012 235)",
+    "oklch(19.5% 0.014 235)",
+    "oklch(22.5% 0.016 235)",
+    "oklch(26% 0.018 235)",
+    "oklch(94% 0.008 220)"
+  ],
+  "semantic": {
+    "_usage": "DATA-ONLY verdict colors. NEVER wire these into generic status chrome (toasts, alerts, badges). Ice = a required fact is missing; jade = reserve/verified; garnet = deny/mismatch.",
+    "reserve": "oklch(74% 0.13 165)",
+    "missingFact": "oklch(87% 0.055 215)",
+    "deny": "oklch(64% 0.19 20)",
+    "success": "oklch(74% 0.13 165)",
+    "warning": "oklch(87% 0.055 215)",
+    "danger": "oklch(64% 0.19 20)"
+  },
+  "fonts": {
+    "display": "Schibsted Grotesk",
+    "body": "Public Sans",
+    "mono": "Spline Sans Mono"
+  },
+  "radii": { "sm": 6, "md": 12, "lg": 12, "xl": 12 },
+  "shadowPhilosophy": "pure-glow",
+  "signatureElement": "The COLD-SPOT SWEEP: a fact-lattice scanned by an amber beam, one frost-cold cell the beam cannot warm, and a decision gate that refuses to latch while any cell is cold.",
+  "logoPath": "public/logo.svg",
+  "signatureObject": {
+    "name": "cold-spot sweep",
+    "thesis": "The product's whole job is to surface the one required coverage fact that is missing from a fragmented data field. The signature renders that literally: evidence warms amber where governed sources land a fact, and the single fact the lamp cannot warm stays a frost-ringed cold cell, named, while the decision gate visibly refuses to latch. The absence is the hero, not the verdict.",
+    "perSurface": {
+      "landing": "Full SweepEngine on the committed abstain run under a breathing amber lamp radial and masked survey-ruling ground; the full-bleed closer beam snags on the cold cell.",
+      "console": "Zero ambient atmosphere; the sweep compresses to a per-row MiniLattice (8 facts, hollow ink = not-yet-investigated, dashed ice = cold) so felt completeness reads at a glance across a dense queue."
+    }
+  },
+  "invariantPhrase": "The one fact the lamp cannot warm.",
+  "statusLegend": [
+    { "color": "oklch(78% 0.145 75)", "token": "warm / investigating", "meaning": "a governed source landed this required fact, or the agent is sweeping" },
+    { "color": "oklch(87% 0.055 215)", "token": "cold / abstain", "meaning": "a required fact is missing; the gate is held open and the fact is named" },
+    { "color": "oklch(74% 0.13 165)", "token": "reserve", "meaning": "all facts resolved, gate latched, reserve issued" },
+    { "color": "oklch(64% 0.19 20)", "token": "deny / contradiction", "meaning": "a governed source contradicts coverage; gate latched deny" },
+    { "color": "transparent + 1px var(--ink-18)", "token": "pending", "meaning": "not yet investigated: hollow hairline cells (no fill), never ice" }
+  ]
+}

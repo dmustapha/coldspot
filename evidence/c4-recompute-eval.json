@@ -1,0 +1,25 @@
+{
+  "harness": "recompute-determinism",
+  "stable": {
+    "claim": "CLM-7781",
+    "identical": true,
+    "changes": 0
+  },
+  "mutated": {
+    "claim": "CLM-4471",
+    "identical": false,
+    "expectedField": "verdict",
+    "changedFields": [
+      "verdict",
+      "missing_fact",
+      "resolving_source",
+      "counterfactual",
+      "amount",
+      "currency"
+    ],
+    "verdictFrom": "abstain",
+    "verdictTo": "reserve"
+  },
+  "verdict": "PASS",
+  "ts": "2026-10-25T06:56:33.052Z"
+}

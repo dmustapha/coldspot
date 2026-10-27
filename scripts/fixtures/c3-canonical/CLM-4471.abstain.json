@@ -1,0 +1,228 @@
+[
+  {
+    "memoryId": "CLM-4471:1792906685780:667",
+    "action": "probe",
+    "actor": "probe",
+    "timestamp": 1792906685780,
+    "details": {
+      "source": "oracle_policy",
+      "relevant": true,
+      "reason": "relevant: schema match, 1 matching rows, fresh",
+      "signals": {
+        "schemaMatch": true,
+        "lastRefreshIso": null,
+        "freshnessDays": null,
+        "rowCoverage": 1
+      }
+    }
+  },
+  {
+    "memoryId": "CLM-4471:1792906686767:668",
+    "action": "probe",
+    "actor": "probe",
+    "timestamp": 1792906686767,
+    "details": {
+      "source": "endorsement_rows",
+      "relevant": true,
+      "reason": "relevant: schema match, 1 matching rows, fresh",
+      "signals": {
+        "schemaMatch": true,
+        "lastRefreshIso": null,
+        "freshnessDays": null,
+        "rowCoverage": 1
+      }
+    }
+  },
+  {
+    "memoryId": "CLM-4471:1792906687783:669",
+    "action": "probe",
+    "actor": "probe",
+    "timestamp": 1792906687783,
+    "details": {
+      "source": "treaty_api",
+      "relevant": true,
+      "reason": "relevant: schema match, 1 matching rows, fresh",
+      "signals": {
+        "schemaMatch": true,
+        "lastRefreshIso": null,
+        "freshnessDays": null,
+        "rowCoverage": 1
+      }
+    }
+  },
+  {
+    "memoryId": "CLM-4471:1792906689334:670",
+    "action": "probe",
+    "actor": "probe",
+    "timestamp": 1792906689334,
+    "details": {
+      "source": "openfema",
+      "relevant": true,
+      "reason": "relevant: live API returned a usable record (seeded-real fallback (real prior OpenFEMA response): DR-4844-FL \"HURRICANE MILTON\" 2024-10-05..2024-11-02)",
+      "signals": {
+        "schemaMatch": false,
+        "lastRefreshIso": null,
+        "freshnessDays": null,
+        "rowCoverage": 0,
+        "apiRecordReturned": true,
+        "apiDetail": "seeded-real fallback (real prior OpenFEMA response): DR-4844-FL \"HURRICANE MILTON\" 2024-10-05..2024-11-02"
+      }
+    }
+  },
+  {
+    "memoryId": "CLM-4471:1792906689581:671",
+    "action": "discard",
+    "actor": "probe",
+    "timestamp": 1792906689581,
+    "details": {
+      "source": "damage_photo",
+      "relevant": false,
+      "reason": "discarded: claim carries no readable image evidence (kind=none)",
+      "signals": {
+        "schemaMatch": false,
+        "lastRefreshIso": null,
+        "freshnessDays": null,
+        "rowCoverage": 0,
+        "evidencePresent": false,
+        "evidenceKind": "none"
+      }
+    }
+  },
+  {
+    "memoryId": "CLM-4471:1792906690370:672",
+    "action": "discard",
+    "actor": "probe",
+    "timestamp": 1792906690370,
+    "details": {
+      "source": "legacy_notes",
+      "relevant": false,
+      "reason": "stale (last refreshed 2019-03-01, 2795d > 365d); 0 rows match policy POL-1001",
+      "signals": {
+        "schemaMatch": true,
+        "lastRefreshIso": "2019-03-01",
+        "freshnessDays": 2795,
+        "rowCoverage": 0
+      }
+    }
+  },
+  {
+    "memoryId": "CLM-4471:1792906691338:673",
+    "action": "federate",
+    "actor": "zetaris",
+    "timestamp": 1792906691338,
+    "details": {
+      "sources": [
+        "FILES.policy",
+        "FILES.endorsement",
+        "SRC.treaty"
+      ],
+      "rowCount": 1,
+      "drivenBy": "orchestrator.safety_net"
+    }
+  },
+  {
+    "memoryId": "CLM-4471:1792906691853:674",
+    "action": "federate",
+    "actor": "openfema",
+    "timestamp": 1792906691853,
+    "details": {
+      "source": "OpenFEMA DisasterDeclarationsSummaries",
+      "provenance": "seeded-real",
+      "catWindow": {
+        "open": "2024-10-05",
+        "close": "2024-11-02"
+      },
+      "lossRelevant": false,
+      "detail": "seeded-real fallback (real prior OpenFEMA response): DR-4844-FL \"HURRICANE MILTON\" 2024-10-05..2024-11-02 — NOT applied: claim loss 2026-09-13 is outside this declared window (declaration not about this loss)"
+    }
+  },
+  {
+    "memoryId": "CLM-4471:1792906692142:675",
+    "action": "reconcile",
+    "actor": "orchestrator",
+    "timestamp": 1792906692142,
+    "details": {
+      "facts": {
+        "baseLimit": 5000000,
+        "endorsementSublimit": 1000000,
+        "endorsementPeril": "fire",
+        "treatyCessionPct": 40,
+        "treatyCatSublimit": 2000000,
+        "reportedAmount": 1250000,
+        "catWindow": null,
+        "lossInsideCatWindow": null,
+        "visionFacts": null,
+        "factConfidence": {
+          "baseLimit": 0.8,
+          "endorsementSublimit": 0.8,
+          "treatyCessionPct": 0.8,
+          "lossInsideCatWindow": 0.8
+        }
+      },
+      "complete": false,
+      "missing": "whether the loss date falls inside the declared CAT event window",
+      "factConfidence": {
+        "baseLimit": 0.8,
+        "endorsementSublimit": 0.8,
+        "treatyCessionPct": 0.8,
+        "lossInsideCatWindow": 0.8
+      }
+    }
+  },
+  {
+    "memoryId": "CLM-4471:1792906692381:676",
+    "action": "verify",
+    "actor": "orchestrator",
+    "timestamp": 1792906692381,
+    "details": {
+      "gateComplete": false,
+      "reDerivedComplete": false,
+      "agrees": true,
+      "winner": "gate",
+      "note": "VERIFY re-derivation confirms the deterministic gate verdict",
+      "runStateBytes": 425
+    }
+  },
+  {
+    "memoryId": "CLM-4471:1792906695536:677",
+    "action": "counterfactual",
+    "actor": "orchestrator",
+    "timestamp": 1792906695536,
+    "details": {
+      "ifFact": "whether the loss date falls inside the declared CAT event window",
+      "thenVerdict": "reserve",
+      "thenAmount": 750000,
+      "note": "if \"whether the loss date falls inside the declared CAT event window\" were known, the engine would reserve $750,000 (deterministic, over a hypothetical-complete facts copy)"
+    }
+  },
+  {
+    "memoryId": "CLM-4471:1792906695832:678",
+    "action": "gate-override",
+    "actor": "orchestrator",
+    "timestamp": 1792906695832,
+    "details": {
+      "reason": "deterministic completeness gate incomplete; model verdict overridden to abstain (engine-as-truth, INVARIANT #4/#5)",
+      "modelVerdict": "reserve",
+      "missing": "whether the loss date falls inside the declared CAT event window"
+    }
+  },
+  {
+    "memoryId": "CLM-4471:1792906696081:679",
+    "action": "abstain",
+    "actor": "nemotron",
+    "timestamp": 1792906696081,
+    "details": {
+      "decision": {
+        "verdict": "abstain",
+        "missing_fact": "whether the loss date falls inside the declared CAT event window",
+        "resolving_source": "treaty CAT-event registry (SRC.treaty cat_event_close) / NOAA event close date",
+        "partial_basis": "partial coverage facts gathered; whether the loss date falls inside the declared CAT event window unresolved so a reserve cannot be set",
+        "counterfactual": {
+          "ifFact": "whether the loss date falls inside the declared CAT event window",
+          "thenVerdict": "reserve",
+          "thenAmount": 750000
+        }
+      }
+    }
+  }
+]

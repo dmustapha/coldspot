@@ -1,0 +1,202 @@
+[
+  {
+    "memoryId": "CLM-7781:1792906969712:680",
+    "action": "probe",
+    "actor": "probe",
+    "timestamp": 1792906969712,
+    "details": {
+      "source": "oracle_policy",
+      "relevant": true,
+      "reason": "relevant: schema match, 1 matching rows, fresh",
+      "signals": {
+        "schemaMatch": true,
+        "lastRefreshIso": null,
+        "freshnessDays": null,
+        "rowCoverage": 1
+      }
+    }
+  },
+  {
+    "memoryId": "CLM-7781:1792906970716:681",
+    "action": "probe",
+    "actor": "probe",
+    "timestamp": 1792906970716,
+    "details": {
+      "source": "endorsement_rows",
+      "relevant": true,
+      "reason": "relevant: schema match, 1 matching rows, fresh",
+      "signals": {
+        "schemaMatch": true,
+        "lastRefreshIso": null,
+        "freshnessDays": null,
+        "rowCoverage": 1
+      }
+    }
+  },
+  {
+    "memoryId": "CLM-7781:1792906971794:682",
+    "action": "probe",
+    "actor": "probe",
+    "timestamp": 1792906971794,
+    "details": {
+      "source": "treaty_api",
+      "relevant": true,
+      "reason": "relevant: schema match, 1 matching rows, fresh",
+      "signals": {
+        "schemaMatch": true,
+        "lastRefreshIso": null,
+        "freshnessDays": null,
+        "rowCoverage": 1
+      }
+    }
+  },
+  {
+    "memoryId": "CLM-7781:1792906972987:683",
+    "action": "probe",
+    "actor": "probe",
+    "timestamp": 1792906972987,
+    "details": {
+      "source": "openfema",
+      "relevant": true,
+      "reason": "relevant: live API returned a usable record (live OpenFEMA DisasterDeclarationsSummaries: DR-4844-FL \"HURRICANE MILTON\" 2024-10-05..2024-11-02)",
+      "signals": {
+        "schemaMatch": false,
+        "lastRefreshIso": null,
+        "freshnessDays": null,
+        "rowCoverage": 0,
+        "apiRecordReturned": true,
+        "apiDetail": "live OpenFEMA DisasterDeclarationsSummaries: DR-4844-FL \"HURRICANE MILTON\" 2024-10-05..2024-11-02"
+      }
+    }
+  },
+  {
+    "memoryId": "CLM-7781:1792906973246:684",
+    "action": "discard",
+    "actor": "probe",
+    "timestamp": 1792906973246,
+    "details": {
+      "source": "damage_photo",
+      "relevant": false,
+      "reason": "discarded: claim carries no readable image evidence (kind=none)",
+      "signals": {
+        "schemaMatch": false,
+        "lastRefreshIso": null,
+        "freshnessDays": null,
+        "rowCoverage": 0,
+        "evidencePresent": false,
+        "evidenceKind": "none"
+      }
+    }
+  },
+  {
+    "memoryId": "CLM-7781:1792906973986:685",
+    "action": "discard",
+    "actor": "probe",
+    "timestamp": 1792906973986,
+    "details": {
+      "source": "legacy_notes",
+      "relevant": false,
+      "reason": "stale (last refreshed 2019-03-01, 2795d > 365d); 0 rows match policy POL-1002",
+      "signals": {
+        "schemaMatch": true,
+        "lastRefreshIso": "2019-03-01",
+        "freshnessDays": 2795,
+        "rowCoverage": 0
+      }
+    }
+  },
+  {
+    "memoryId": "CLM-7781:1792906975143:686",
+    "action": "federate",
+    "actor": "zetaris",
+    "timestamp": 1792906975143,
+    "details": {
+      "sources": [
+        "FILES.policy",
+        "FILES.endorsement",
+        "SRC.treaty"
+      ],
+      "rowCount": 1,
+      "drivenBy": "orchestrator.safety_net"
+    }
+  },
+  {
+    "memoryId": "CLM-7781:1792906975829:687",
+    "action": "federate",
+    "actor": "openfema",
+    "timestamp": 1792906975829,
+    "details": {
+      "source": "OpenFEMA DisasterDeclarationsSummaries",
+      "provenance": "live",
+      "catWindow": {
+        "open": "2024-10-05",
+        "close": "2024-11-02"
+      },
+      "lossRelevant": false,
+      "detail": "live OpenFEMA DisasterDeclarationsSummaries: DR-4844-FL \"HURRICANE MILTON\" 2024-10-05..2024-11-02 — NOT applied: claim loss 2024-09-25 is outside this declared window (declaration not about this loss)"
+    }
+  },
+  {
+    "memoryId": "CLM-7781:1792906976156:688",
+    "action": "reconcile",
+    "actor": "orchestrator",
+    "timestamp": 1792906976156,
+    "details": {
+      "facts": {
+        "baseLimit": 3000000,
+        "endorsementSublimit": 750000,
+        "endorsementPeril": "wind",
+        "treatyCessionPct": 50,
+        "treatyCatSublimit": 3000000,
+        "reportedAmount": 900000,
+        "catWindow": {
+          "open": "2024-09-24",
+          "close": "2024-09-28"
+        },
+        "lossInsideCatWindow": true,
+        "visionFacts": null,
+        "factConfidence": {
+          "baseLimit": 0.8,
+          "endorsementSublimit": 0.8,
+          "treatyCessionPct": 0.8,
+          "lossInsideCatWindow": 0.8
+        }
+      },
+      "complete": true,
+      "factConfidence": {
+        "baseLimit": 0.8,
+        "endorsementSublimit": 0.8,
+        "treatyCessionPct": 0.8,
+        "lossInsideCatWindow": 0.8
+      }
+    }
+  },
+  {
+    "memoryId": "CLM-7781:1792906976467:689",
+    "action": "verify",
+    "actor": "orchestrator",
+    "timestamp": 1792906976467,
+    "details": {
+      "gateComplete": true,
+      "reDerivedComplete": true,
+      "agrees": true,
+      "winner": "gate",
+      "note": "VERIFY re-derivation confirms the deterministic gate verdict",
+      "runStateBytes": 460
+    }
+  },
+  {
+    "memoryId": "CLM-7781:1792906978200:690",
+    "action": "decide",
+    "actor": "nemotron",
+    "timestamp": 1792906978200,
+    "details": {
+      "decision": {
+        "verdict": "reserve",
+        "amount": 450000,
+        "currency": "USD",
+        "basis": "Loss confirmed inside the declared CAT event window. Binding CAT sublimit $3,000,000 (capped by base policy limit $3,000,000). Gross exposure $900,000, less 50% treaty cession ($450,000 ceded) = net case reserve $450,000."
+      }
+    }
+  }
+]

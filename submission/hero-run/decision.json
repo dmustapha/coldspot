@@ -1,0 +1,11 @@
+{
+  "verdict": "abstain",
+  "missing_fact": "whether the loss date falls inside the declared CAT event window",
+  "resolving_source": "treaty CAT-event registry (SRC.treaty cat_event_close) / NOAA event close date",
+  "partial_basis": "base_limit=5000000; endorsement_sublimit=1000000_fire; treaty_cession=40%; treaty_cat_sublimit=2000000; reported_amount=1250000",
+  "counterfactual": {
+    "ifFact": "whether the loss date falls inside the declared CAT event window",
+    "thenVerdict": "reserve",
+    "thenAmount": 750000
+  }
+}

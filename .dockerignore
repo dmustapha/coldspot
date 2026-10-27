@@ -1,0 +1,48 @@
+# Keep the build context lean and SECRET-FREE. Nothing secret enters the image.
+
+# Dependencies & build output (rebuilt inside the image; .next excluded to stay
+# isolated from the running host dev server's .next).
+node_modules
+.next
+out
+coverage
+
+# Secrets / local env — provisioned on the VM at runtime (env + bind-mount), never baked.
+.env
+.env.*
+!.env.example
+wallet
+*wallet*
+*.pem
+*.p12
+*.sso
+*.jks
+
+# VCS / editor / OS cruft
+.git
+.gitignore
+.DS_Store
+*.log
+*.tsbuildinfo
+
+# Docs, design, tests, screenshots — not needed at runtime.
+docs
+design-tests
+screenshots
+research
+phases
+evals
+*.md
+!package.json
+
+# Tooling configs irrelevant to the runtime image.
+vitest*.config.ts
+.crossmodel-gate
+.design-forge-state.json
+.design-render-375.json
+
+# NOTE: vendor/meterless, data/seed, submission/hero-run are NOT ignored — the app
+# reads them at runtime and the Dockerfile copies them into the image.
+# evidence/ledger is NOT copied from context (the Dockerfile mkdir's it); a runtime
+# volume owns it.
+evidence

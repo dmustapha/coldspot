@@ -1,0 +1,6 @@
+policy_id,sublimit,peril,effective_date
+POL-1001,1000000,fire,2026-02-01
+POL-1002,750000,wind,2024-03-15
+POL-1003,500000,wind,2022-05-01
+POL-1005,250000,water,2026-04-10
+POL-1007,1200000,fire,2026-06-01

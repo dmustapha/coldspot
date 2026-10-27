@@ -1,0 +1,60 @@
+{
+  "version": 1,
+  "note": "COLDSPOT claims-domain intent registry in the REAL Meterless Scout engine's shape (id/category/description/capabilities/riskClass/examples). The vendored Scout (vendor/meterless/scout-intent/impl) is example+description driven — it scores a prompt by token overlap with each intent's examples, never against the eval labels. Representative claims phrasings per workflow; mutate a prompt and routing changes (falsifiable). Intent id == COLDSPOT workflow.",
+  "intents": [
+    {
+      "id": "GENERAL",
+      "category": "general",
+      "description": "Safe fallback when no claims workflow clears the reject band. Responds conversationally, never routes to a workflow.",
+      "capabilities": [],
+      "riskClass": "low",
+      "examples": [
+        "hello there",
+        "what can you help me with",
+        "what's the weather tomorrow"
+      ]
+    },
+    {
+      "id": "reserve-decide",
+      "category": "claims",
+      "description": "Decide how much loss reserve to set aside or pay out on a claim's liability.",
+      "capabilities": ["probe_source", "federated_query", "reason_decision"],
+      "riskClass": "medium",
+      "examples": [
+        "how much should we reserve on this claim",
+        "what liability do we set aside for this claim",
+        "how much do we pay out on the fire loss",
+        "set aside reserve amount for the loss",
+        "determine the payout liability for the damage"
+      ]
+    },
+    {
+      "id": "coverage-check",
+      "category": "claims",
+      "description": "Check whether a loss is covered under the policy, including whether an exclusion or peril applies.",
+      "capabilities": ["probe_source", "federated_query"],
+      "riskClass": "low",
+      "examples": [
+        "is this damage covered under the policy",
+        "does the policy exclusion apply to this peril",
+        "check coverage for the water claim",
+        "is this loss covered or excluded",
+        "verify policy coverage for the peril"
+      ]
+    },
+    {
+      "id": "abstain-triage",
+      "category": "claims",
+      "description": "Triage a claim where the sources conflict, a required fact is missing, or the record is ambiguous or disputed.",
+      "capabilities": ["probe_source"],
+      "riskClass": "medium",
+      "examples": [
+        "the sources conflict on timing and the record is ambiguous",
+        "the cat window close date is missing so this is unclear",
+        "there is a dispute over conflicting treaty facts",
+        "the facts are missing and the record is ambiguous",
+        "conflicting disputed sources make this unclear"
+      ]
+    }
+  ]
+}

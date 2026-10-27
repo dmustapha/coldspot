@@ -1,0 +1,27 @@
+<svg width="420" height="96" viewBox="0 0 420 96" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="COLDSPOT">
+  <title>COLDSPOT</title>
+  <desc>The COLDSPOT mark — a warm thermal field of facts with one cold spot — beside the wordmark.</desc>
+  <defs>
+    <radialGradient id="lf" cx="0.44" cy="0.46" r="0.6">
+      <stop offset="0" stop-color="#f6cd82"/><stop offset="0.5" stop-color="#e6a23c"/>
+      <stop offset="0.85" stop-color="#a06e32"/><stop offset="1" stop-color="#a06e32" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="ls" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="2.4"/></filter>
+    <radialGradient id="lh" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#aed6e9" stop-opacity="0.6"/><stop offset="1" stop-color="#aed6e9" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="lc" cx="0.42" cy="0.38" r="0.6">
+      <stop offset="0" stop-color="#eaf6fb"/><stop offset="0.6" stop-color="#aed6e9"/><stop offset="1" stop-color="#6fa2be"/>
+    </radialGradient>
+  </defs>
+  <!-- mark -->
+  <g transform="translate(16,16)">
+    <circle cx="30" cy="31" r="26" fill="url(#lf)" filter="url(#ls)"/>
+    <circle cx="40.5" cy="25.5" r="13" fill="url(#lh)"/>
+    <circle cx="40.5" cy="25.5" r="7" fill="#0c0f13" opacity="0.5"/>
+    <circle cx="40.5" cy="25.5" r="6" fill="url(#lc)"/>
+    <circle cx="40.5" cy="25.5" r="6" fill="none" stroke="#eaf6fb" stroke-width="0.7" opacity="0.8"/>
+  </g>
+  <!-- wordmark -->
+  <text x="92" y="60" font-family="'Schibsted Grotesk','Helvetica Neue',Arial,sans-serif" font-weight="800" font-size="40" letter-spacing="0.5" fill="#eceef0">COLDSPOT</text>
+</svg>
