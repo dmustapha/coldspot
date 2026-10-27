@@ -58,7 +58,7 @@ export function StreamedResolve({
   claimId: string;
   imageDataUrl?: string;
   reportDataUrl?: string;
-  onDone?: () => void;
+  onDone?: (decision: Decision) => void;
   onBusyChange?: (busy: boolean) => void;
   disabled?: boolean;
 }) {
@@ -90,6 +90,7 @@ export function StreamedResolve({
     setDecision(null);
     setError(null);
     let sawDecision = false;
+    let finalDecision: Decision | null = null;
     const ctrl = new AbortController();
     ctrlRef.current = ctrl;
     try {
@@ -125,6 +126,7 @@ export function StreamedResolve({
             // a decision line may carry undefined after exhausted retries — guard it (MUST-FIX #3)
             if (obj.decision) {
               setDecision(obj.decision);
+              finalDecision = obj.decision;
               sawDecision = true;
             }
           } else if (obj.type === "error") throw new Error(obj.error);
@@ -142,7 +144,7 @@ export function StreamedResolve({
         setPhase("error");
       } else {
         setPhase("done");
-        onDone?.();
+        if (finalDecision) onDone?.(finalDecision);
       }
     } catch (e) {
       if (!alive.current || (e instanceof DOMException && e.name === "AbortError")) return;

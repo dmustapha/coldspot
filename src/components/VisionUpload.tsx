@@ -23,6 +23,7 @@ export function VisionUpload({
   const [preview, setPreview] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [fileName, setFileName] = useState<string | null>(null);
+  const [dragging, setDragging] = useState(false);
 
   function reset() {
     setPreview(null);
@@ -31,9 +32,10 @@ export function VisionUpload({
     onImage(undefined);
   }
 
-  function handle(e: React.ChangeEvent<HTMLInputElement>) {
+  // Shared intake: the same validation + read path for the file picker AND drag-drop,
+  // so both affordances the UI advertises ("drop ... or browse") behave identically.
+  function processFile(file: File | undefined) {
     setError(null);
-    const file = e.target.files?.[0];
     if (!file) return;
 
     // MIME allow-list (reject SVG/gif/pdf and anything scriptable).
@@ -65,6 +67,16 @@ export function VisionUpload({
     reader.readAsDataURL(file);
   }
 
+  function handle(e: React.ChangeEvent<HTMLInputElement>) {
+    processFile(e.target.files?.[0]);
+  }
+
+  function onDrop(e: React.DragEvent<HTMLLabelElement>) {
+    e.preventDefault();
+    setDragging(false);
+    processFile(e.dataTransfer.files?.[0]);
+  }
+
   return (
     <div className="card-flat p-4">
       <div className="flex items-center justify-between">
@@ -85,7 +97,13 @@ export function VisionUpload({
 
       <label
         htmlFor={id}
-        className="mt-2.5 flex cursor-pointer items-center justify-between gap-3 rounded-card border border-dashed border-ink-18 bg-[oklch(14%_0.014_230)] px-3.5 py-3 transition-colors duration-150 hover:border-accent-30 active:bg-ink-04"
+        onDragOver={(e) => {
+          e.preventDefault();
+          if (!dragging) setDragging(true);
+        }}
+        onDragLeave={() => setDragging(false)}
+        onDrop={onDrop}
+        className={`mt-2.5 flex cursor-pointer items-center justify-between gap-3 rounded-card border border-dashed px-3.5 py-3 transition-colors duration-150 hover:border-accent-30 active:bg-ink-04 ${dragging ? "border-accent bg-ink-04" : "border-ink-18 bg-[oklch(14%_0.014_230)]"}`}
       >
         <span className="flex items-center gap-2.5">
           <span

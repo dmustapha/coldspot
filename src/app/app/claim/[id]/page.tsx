@@ -197,7 +197,8 @@ export default function ClaimPage({ params }: { params: Promise<{ id: string }> 
             reportDataUrl={report}
             disabled={busy}
             onBusyChange={setStreamBusy}
-            onDone={() => {
+            onDone={(streamed) => {
+              setDecision(streamed); // sync the shared Decision panel with the streamed verdict
               loadTiles();
               setLedgerKey((k) => k + 1);
             }}
