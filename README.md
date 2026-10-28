@@ -15,7 +15,8 @@
 ## Live now
 
 - **App:** https://coldspot-agent.duckdns.org
-- **Judge replay (the money beat, instant):** https://coldspot-agent.duckdns.org/demo
+- **Narrated demo video (2:06):** [`docs/demo/COLDSPOT-demo.mp4`](docs/demo/COLDSPOT-demo.mp4) (the full money beat, abstain to reserve, with voiceover)
+- **Judge replay (the money beat, instant, in-browser):** https://coldspot-agent.duckdns.org/demo
 - **Proof surface (artifacts read at render):** https://coldspot-agent.duckdns.org/proof
 - **Verify the headline numbers yourself (keyless):** `npm test` reproduces the core logic; `npm run evals` re-derives every cycle gate against live sources.
 
